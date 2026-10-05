@@ -3,168 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Verifikasi PBVSI Bogor 2026</title>
-    <link href="https://jsdelivr.net" rel="stylesheet">
+    <title>Aplikasi Verifikasi Atlet PBVSI Bogor 2026</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            color: white;
+            border-radius: 0 0 20px 20px;
+        }
+        .card-custom {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card-custom:hover {
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        }
+        .badge-status {
+            font-size: 0.85rem;
+            padding: 0.4em 0.75em;
+            border-radius: 50rem;
+        }
+        .table-responsive-custom {
+            max-height: 520px;
+            overflow-y: auto;
+        }
+        .sticky-header th {
+            position: sticky;
+            top: 0;
+            background-color: #212529 !important;
+            color: #ffffff;
+            z-index: 2;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container my-5">
-    <div class="text-center mb-5">
-        <h1 class="fw-bold text-primary">🏐 Aplikasi Pencocokan Data Atlet PBVSI Bogor</h1>
-        <p class="lead text-muted">Sistem Verifikasi Mandiri Kejuaraan Bola Voli KU-2012 (Turnamen Tahun 2026)</p>
-    </div>
+    <header class="header-gradient py-4 mb-4 shadow-sm">
+        <div class="container text-center">
+            <h1 class="fw-bold mb-1"><i class="fa-solid fa-volleyball me-2"></i>Aplikasi Verifikasi Atlet PBVSI Bogor 2026</h1>
+            <p class="lead mb-0 fs-6 text-white-50">Sistem Pencocokan Data Master & Validasi Batas Usia Mandiri Kejuaraan Bola Voli</p>
+        </div>
+    </header>
 
-    <!-- Input Copy-Paste Teks -->
-    <div class="row mb-4">
-        <div class="col-md-6 mb-3">
-            <div class="card shadow-sm">
-                <div class="card-header bg-dark text-white fw-bold">1. Blok & Copy Kolom NAMA MASTER PBVSI</div>
-                <div class="card-body">
-                    <p class="text-muted small">Buka Google Sheets Master, blok seluruh kolom nama atlet, lalu paste (Ctrl+V) di bawah:</p>
-                    <textarea id="txtMaster" class="form-control" rows="6" placeholder="Contoh:\nAndika Pratama\nBudi Santoso\nRiyan Hidayat"></textarea>
+    <main class="container my-4">
+        <div class="row g-4 mb-4">
+            <!-- Textarea 1: Master PBVSI -->
+            <div class="col-lg-6">
+                <div class="card card-custom h-100">
+                    <div class="card-header bg-dark text-white fw-bold d-flex justify-content-between align-items-center py-3">
+                        <span><i class="fa-solid fa-database me-2"></i>1. Copy Kolom NAMA MASTER PBVSI</span>
+                        <span class="badge bg-secondary">Kolom Tunggal</span>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <p class="text-muted small mb-2">Buka Google Sheets Master, blok seluruh kolom nama atlet resmi, lalu paste di bawah:</p>
+                        <textarea id="txtMaster" class="form-control flex-grow-1 font-monospace fs-7" rows="7" placeholder="Contoh:\nAndika Pratama\nBudi Santoso\nRiyan Hidayat\nSiti Rahmawati"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Textarea 2: Pendaftar Klub -->
+            <div class="col-lg-6">
+                <div class="card card-custom h-100">
+                    <div class="card-header bg-dark text-white fw-bold d-flex justify-content-between align-items-center py-3">
+                        <span><i class="fa-solid fa-users me-2"></i>2. Copy 3 Kolom Data PENDAFTAR</span>
+                        <span class="badge bg-primary">Nama [TAB] Tgl Lahir [TAB] Klub</span>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <p class="text-muted small mb-2">Blok berbarengan 3 kolom (Nama, Tanggal Lahir, Nama Klub/KLU) dari Excel/Sheets, lalu paste:</p>
+                        <textarea id="txtReg" class="form-control flex-grow-1 font-monospace fs-7" rows="7" placeholder="Contoh:\nAndika Pratama [Tab] 12/05/2010 [Tab] Garuda Volley\nBudi Santoso [Tab] 23/08/2009 [Tab] Gelora Klub\nRiyan Hidayat [Tab] 15/01/2011 [Tab] Satria Muda"></textarea>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mb-3">
-            <div class="card shadow-sm">
-                <div class="card-header bg-dark text-white fw-bold">2. Copy Kolom NAMA & TGL LAHIR PENDAFTAR</div>
-                <div class="card-body">
-                    <p class="text-muted small">Blok berbarengan kolom Nama dan Tanggal Lahir di pendaftaran klub, lalu paste di bawah:</p>
-                    <textarea id="txtReg" class="form-control" rows="6" placeholder="Contoh:\nAndika Pratama [Tekan Tab] 12/05/2012\nBudi Santoso [Tekan Tab] 23/08/2011"></textarea>
+
+        <!-- Action Control Buttons -->
+        <div class="d-flex justify-content-center align-items-center gap-2 mb-5 flex-wrap">
+            <button onclick="prosesPencocokanCopas()" class="btn btn-success btn-lg px-4 py-2 fw-bold shadow">
+                <i class="fa-solid fa-rocket me-2"></i>Mulai Verifikasi & Cocokkan Data
+            </button>
+            <button onclick="isiDataContoh()" class="btn btn-outline-secondary btn-lg px-3 py-2 fw-semibold">
+                <i class="fa-solid fa-vial me-2"></i>Isi Data Contoh
+            </button>
+            <button onclick="resetForm()" class="btn btn-outline-danger btn-lg px-3 py-2 fw-semibold">
+                <i class="fa-solid fa-rotate-right me-2"></i>Reset
+            </button>
+        </div>
+
+        <!-- Statistic Cards Section -->
+        <div id="sectionStatistik" class="row text-center mb-4 d-none g-3">
+            <div class="col-md-4">
+                <div class="card card-custom bg-info bg-gradient text-white p-3">
+                    <h6 class="text-uppercase fw-semibold mb-1 opacity-75"><i class="fa-solid fa-list-check me-2"></i>Total Diperiksa</h6>
+                    <h2 id="statTotal" class="fw-bold mb-0">0</h2>
                 </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom bg-success bg-gradient text-white p-3">
+                    <h6 class="text-uppercase fw-semibold mb-1 opacity-75"><i class="fa-solid fa-circle-check me-2"></i>SAH (Lolos KU-2010)</h6>
+                    <h2 id="statSah" class="fw-bold mb-0">0</h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-custom bg-danger bg-gradient text-white p-3">
+                    <h6 class="text-uppercase fw-semibold mb-1 opacity-75"><i class="fa-solid fa-circle-xmark me-2"></i>TOLAK (Bermasalah)</h6>
+                    <h2 id="statTolak" class="fw-bold mb-0">0</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verification Results Table Section -->
+        <div id="sectionHasil" class="card card-custom d-none mb-5">
+            <div class="card-header bg-white py-3 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                <h5 class="fw-bold text-dark mb-0"><i class="fa-solid fa-clipboard-check me-2 text-success"></i>3. Lembar Hasil Verifikasi</h5>
+                
+                <!-- Table Search & Filter Toolbar -->
+                <div class="d-flex gap-2 align-items-center">
+                    <div class="input-group input-group-sm" style="max-width: 250px;">
+                        <span class="input-group-text bg-light"><i class="fa-solid fa-search"></i></span>
+                        <input type="text" id="inputCari" onkeyup="filterTabel()" class="form-control" placeholder="Cari Nama / Klub...">
+                    </div>
+                    <select id="selectFilterStatus" onchange="filterTabel()" class="form-select form-select-sm" style="width: 140px;">
+                        <option value="ALL">Semua Status</option>
+                        <option value="SAH">Hanya SAH</option>
+                        <option value="TOLAK">Hanya TOLAK</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive table-responsive-custom">
+                    <table class="table table-striped table-hover m-0 align-middle" id="tabelHasil">
+                        <thead class="sticky-header">
+                            <tr>
+                                <th class="ps-3">#</th>
+                                <th>Nama Pendaftar</th>
+                                <th>Nama Klub (KLU)</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Status Pengkot PBVSI</th>
+                                <th>Validasi Batas Usia</th>
+                                <th class="pe-3">Kesimpulan Akhir</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelHasilBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom Toast / Notification Alert Box -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+        <div id="appToast" class="toast align-items-center text-white bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastMessage">
+                    Notifikasi aplikasi
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
     </div>
 
-    <div class="text-center mb-5">
-        <button onclick="prosesPencocokanCopas()" class="btn btn-success btn-lg px-5 fw-bold shadow">🚀 Mulai Verifikasi & Cocokkan Data</button>
-    </div>
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Statistik Hasil -->
-    <div id="sectionStatistik" class="row text-center mb-4 d-none">
-        <div class="col-md-4"><div class="card bg-info text-white p-3 shadow-sm"><h5>Total Diperiksa</h5><h2 id="statTotal" class="fw-bold">0</h2></div></div>
-        <div class="col-md-4"><div class="card bg-success text-white p-3 shadow-sm"><h5>SAH (Lolos KU-2012)</h5><h2 id="statSah" class="fw-bold">0</h2></div></div>
-        <div class="col-md-4"><div class="card bg-danger text-white p-3 shadow-sm"><h5>TOLAK (Bermasalah)</h5><h2 id="statTolak" class="fw-bold">0</h2></div></div>
-    </div>
+    <script>
+        let listHasilLengkap = [];
 
-    <!-- Tabel Detail -->
-    <div id="sectionHasil" class="card shadow-sm d-none">
-        <div class="card-header bg-success text-white fw-bold">3. Lembar Hasil Verifikasi</div>
-        <div class="card-body p-0 table-responsive" style="max-height: 500px;">
-            <table class="table table-striped table-hover m-0 align-middle">
-                <thead class="table-dark sticky-top">
-                    <tr>
-                        <th>Nama Pendaftar</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Status Pengkot PBVSI</th>
-                        <th>Validasi Batas Usia</th>
-                        <th>Kesimpulan Akhir</th>
-                    </tr>
-                </thead>
-                <tbody id="tabelHasilBody"></tbody>
-            </table>
-        </div>
-    </div>
-</div>
+        function showNotification(msg, bgClass = 'bg-dark') {
+            const toastEl = document.getElementById('appToast');
+            const toastMsg = document.getElementById('toastMessage');
+            toastEl.className = `toast align-items-center text-white ${bgClass} border-0`;
+            toastMsg.innerText = msg;
+            const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
+            toast.show();
+        }
 
-<script>
-function prosesPencocokanCopas() {
-    let rawMaster = document.getElementById('txtMaster').value.trim();
-    let rawReg = document.getElementById('txtReg').value.trim();
+        function prosesPencocokanCopas() {
+            let rawMaster = document.getElementById('txtMaster').value.trim();
+            let rawReg = document.getElementById('txtReg').value.trim();
 
-    if (!rawMaster || !rawReg) {
-        alert("Mohon isi kedua kotak teks di atas dengan data dari Google Sheets Anda!");
-        return;
-    }
-
-    // Pemrosesan Database Master Resmi
-    let linesMaster = rawMaster.split('\n');
-    let masterSet = new Set();
-    linesMaster.forEach(line => {
-        if(line.trim()) masterSet.add(line.trim().toLowerCase());
-    });
-
-    // Pemrosesan Data Registrasi Klub
-    let linesReg = rawReg.split('\n');
-    let tbody = document.getElementById('tabelHasilBody');
-    tbody.innerHTML = '';
-
-    let totalSah = 0;
-    let totalTolak = 0;
-    let totalData = 0;
-
-    linesReg.forEach(line => {
-        if (!line.trim()) return;
-        totalData++;
-
-        // Memisahkan nama dan tanggal lahir karena hasil copy antar kolom di excel dipisahkan oleh karakter TAB
-        let parts = line.split('\t');
-        let namaPendaftar = parts[0] ? parts[0].trim() : "Tanpa Nama";
-        let tglLahirText = parts[1] ? parts[1].trim() : "";
-
-        let namaClean = namaPendaftar.toLowerCase();
-
-        // 1. Cek Terdaftar di Pengkot
-        let terdaftar = masterSet.has(namaClean);
-        let statusPBVSI = terdaftar ? "TERDAFTAR DI PENGKOT" : "TIDAK TERDAFTAR";
-
-        // 2. Cek Aturan Kelahiran KU-2012 untuk Tahun Turnamen 2026
-        let statusUsia = "Format Tanggal Salah/Kosong";
-        let tahunLahir = null;
-
-        if (tglLahirText) {
-            // Mencari angka 4 digit dalam teks tanggal untuk mendeteksi tahun lahir (contoh: 2012)
-            let matchTahun = tglLahirText.match(/\b(19|20)\d{2}\b/);
-            if (matchTahun) {
-                tahunLahir = parseInt(matchTahun[0]);
+            if (!rawMaster || !rawReg) {
+                showNotification("Mohon isi kedua textarea dengan data yang akan diverifikasi!", "bg-warning text-dark");
+                return;
             }
+
+            // Parse Database Master Resmi
+            let linesMaster = rawMaster.split('\n');
+            let masterSet = new Set();
+            linesMaster.forEach(line => {
+                let cleaned = line.trim().toLowerCase().replace(/\s+/g, ' ');
+                if (cleaned) masterSet.add(cleaned);
+            });
+
+            // Parse Data Registrasi Klub
+            let linesReg = rawReg.split('\n');
+            listHasilLengkap = [];
+
+            let totalSah = 0;
+            let totalTolak = 0;
+            let totalData = 0;
+
+            linesReg.forEach(line => {
+                if (!line.trim()) return;
+                totalData++;
+
+                // Tab-separated copy-paste parsing from Excel / Sheets
+                let parts = line.split('\t');
+                let namaPendaftar = parts[0] ? parts[0].trim() : "Tanpa Nama";
+                let tglLahirText = parts[1] ? parts[1].trim() : "";
+                let namaKlub = parts[2] ? parts[2].trim() : "-";
+
+                let namaClean = namaPendaftar.toLowerCase().replace(/\s+/g, ' ');
+
+                // 1. Check Status Pengkot PBVSI
+                let terdaftar = masterSet.has(namaClean);
+                let statusPBVSI = terdaftar ? "TERDAFTAR DI PENGKOT" : "TIDAK TERDAFTAR";
+
+                // 2. Validate Age Criteria (KU-2010 for Tournament Year 2026)
+                let statusUsia = "Format Tanggal Salah/Kosong";
+                let tahunLahir = null;
+
+                if (tglLahirText) {
+                    let matchTahun = tglLahirText.match(/\b(19|20)\d{2}\b/);
+                    if (matchTahun) {
+                        tahunLahir = parseInt(matchTahun[0]);
+                    }
+                }
+
+                if (tahunLahir) {
+                    // Qualification rule: Year 2010 onwards is valid for KU-2010 in 2026
+                    if (tahunLahir >= 2010) {
+                        statusUsia = "VALID (Sesuai KU-2010)";
+                    } else {
+                        statusUsia = "INVALID (Terlalu Tua)";
+                    }
+                }
+
+                // 3. Final Conclusion Logic
+                let kesimpulan = "TOLAK";
+                let isSah = false;
+                
+                if (terdaftar && statusUsia === "VALID (Sesuai KU-2010)") {
+                    kesimpulan = "SAH";
+                    isSah = true;
+                    totalSah++;
+                } else {
+                    totalTolak++;
+                }
+
+                listHasilLengkap.push({
+                    id: totalData,
+                    nama: namaPendaftar,
+                    klub: namaKlub,
+                    tglLahir: tglLahirText || '-',
+                    terdaftar: terdaftar,
+                    statusPBVSI: statusPBVSI,
+                    statusUsia: statusUsia,
+                    kesimpulan: kesimpulan,
+                    isSah: isSah
+                });
+            });
+
+            // Update Summary Dashboard Counters
+            document.getElementById('statTotal').innerText = totalData;
+            document.getElementById('statSah').innerText = totalSah;
+            document.getElementById('statTolak').innerText = totalTolak;
+
+            document.getElementById('sectionStatistik').classList.remove('d-none');
+            document.getElementById('sectionHasil').classList.remove('d-none');
+
+            // Render Table Rows
+            renderTabel(listHasilLengkap);
+            showNotification(`Proses verifikasi selesai! ${totalSah} SAH, ${totalTolak} TOLAK.`, "bg-success");
         }
 
-        if (tahunLahir) {
-            // Regulasi KU-2012 di tahun 2026: Hanya kelahiran tahun 2012, 2013, 2014 dst yang lolos sah.
-            if (tahunLahir >= 2012) {
-                statusUsia = "VALID (Sesuai KU-2012)";
-            } else {
-                statusUsia = "INVALID (Terlalu Tua)";
+        function renderTabel(dataList) {
+            let tbody = document.getElementById('tabelHasilBody');
+            tbody.innerHTML = '';
+
+            if (dataList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">Tidak ada data yang sesuai filter.</td></tr>`;
+                return;
             }
+
+            dataList.forEach((item, index) => {
+                let badgePBVSI = item.terdaftar ? 'bg-success' : 'bg-warning text-dark';
+                let badgeUsia = item.statusUsia.includes('VALID') ? 'bg-success' : 'bg-danger';
+                let badgeKesimpulan = item.isSah ? 'bg-success' : 'bg-danger';
+
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="ps-3 text-muted small">${index + 1}</td>
+                    <td><b class="text-dark">${item.nama}</b></td>
+                    <td><span class="badge bg-secondary opacity-75">${item.klub}</span></td>
+                    <td><span class="font-monospace fs-7">${item.tglLahir}</span></td>
+                    <td><span class="badge badge-status ${badgePBVSI}">${item.statusPBVSI}</span></td>
+                    <td><span class="badge badge-status ${badgeUsia}">${item.statusUsia}</span></td>
+                    <td class="pe-3"><span class="badge badge-status ${badgeKesimpulan} px-3">${item.kesimpulan}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
 
-        // 3. Tarik Kesimpulan Akhir
-        let kesimpulan = "TOLAK (Periksa Kembali)";
-        let badgeClass = "bg-danger";
-        
-        if (terdaftar && statusUsia === "VALID (Sesuai KU-2012)") {
-            kesimpulan = "SAH (Lolos)";
-            badgeClass = "bg-success";
-            totalSah++;
-        } else {
-            totalTolak++;
+        function filterTabel() {
+            let query = document.getElementById('inputCari').value.toLowerCase().trim();
+            let filterStatus = document.getElementById('selectFilterStatus').value;
+
+            let filtered = listHasilLengkap.filter(item => {
+                let matchQuery = item.nama.toLowerCase().includes(query) || item.klub.toLowerCase().includes(query);
+                let matchStatus = true;
+
+                if (filterStatus === 'SAH') {
+                    matchStatus = item.isSah;
+                } else if (filterStatus === 'TOLAK') {
+                    matchStatus = !item.isSah;
+                }
+
+                return matchQuery && matchStatus;
+            });
+
+            renderTabel(filtered);
         }
 
-        // Tampilkan Baris ke Tabel
-        let tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td><b>${namaPendaftar}</b></td>
-            <td>${tglLahirText || '-'}</td>
-            <td><span class="badge ${terdaftar ? 'bg-success' : 'bg-warning text-dark'}">${statusPBVSI}</span></td>
-            <td><span class="badge ${statusUsia.includes('VALID') ? 'bg-success' : 'bg-danger'}">${statusUsia}</span></td>
-            <td><span class="badge ${badgeClass}">${kesimpulan}</span></td>
-        `;
-        tbody.appendChild(tr);
-    });
+        function isiDataContoh() {
+            const sampleMaster = `Andika Pratama\nBudi Santoso\nRiyan Hidayat\nSiti Rahmawati\nDewa Firmansyah\nEka Putri\nFajar Nugraha`;
+            
+            const sampleReg = `Andika Pratama\t12/05/2010\tGaruda Volley\nBudi Santoso\t23/08/2008\tGelora Klub\nRiyan Hidayat\t15/01/2011\tSatria Muda\nSiti Rahmawati\t04/11/2012\tPBV Bina Muda\nEka Putri\t10/10/2010\tGaruda Volley\nGilang Ramadhan\t05/03/2010\tBintang Bogor`;
 
-    // Update Tampilan Dashboard Utama
-    document.getElementById('statTotal').innerText = totalData;
-    document.getElementById('statSah').innerText = totalSah;
-    document.getElementById('statTolak').innerText = totalTolak;
+            document.getElementById('txtMaster').value = sampleMaster;
+            document.getElementById('txtReg').value = sampleReg;
+            showNotification("Data contoh berhasil dimuat. Silakan klik 'Mulai Verifikasi'!", "bg-info text-white");
+        }
 
-    document.getElementById('sectionStatistik').classList.remove('d-none');
-    document.getElementById('sectionHasil').classList.remove('d-none');
-    
-    alert("⚡ Pencocokan data selesai diproses!");
-}
-</script>
-
+        function resetForm() {
+            document.getElementById('txtMaster').value = '';
+            document.getElementById('txtReg').value = '';
+            document.getElementById('tabelHasilBody').innerHTML = '';
+            document.getElementById('sectionStatistik').classList.add('d-none');
+            document.getElementById('sectionHasil').classList.add('d-none');
+            document.getElementById('inputCari').value = '';
+            document.getElementById('selectFilterStatus').value = 'ALL';
+            listHasilLengkap = [];
+            showNotification("Formulir dan hasil verifikasi telah dibersihkan.", "bg-secondary");
+        }
+    </script>
 </body>
 </html>
